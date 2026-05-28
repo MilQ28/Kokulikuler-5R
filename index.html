@@ -1,0 +1,848 @@
+<!DOCTYPE html>
+<!--
+  ================================================================
+  SafetyCheck-IT — index.html
+  Aplikasi Audit & Checklist K3LH Digital
+  Studio Komputer / Studio TechAnim
+  
+  Dibuat untuk: Tugas Kokurikuler SMK Jurusan RPL
+  Studi Kasus : "Audit Mendadak di Studio TechAnim"
+  Slogan      : "Studio Aman, Produktivitas Nyaman"
+  ================================================================
+-->
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="SafetyCheck-IT — Aplikasi Audit dan Checklist K3LH Digital untuk area studio komputer SMK RPL. Wujudkan budaya kerja industri 5R yang aman dan profesional." />
+  <meta name="keywords" content="K3LH, audit keselamatan, 5R, studio komputer, RPL, SMK, checklist" />
+  <title>SafetyCheck-IT | Audit K3LH Digital Studio</title>
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet" />
+
+  <!-- Stylesheet utama -->
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+<!-- ================================================================
+     SIDEBAR NAVIGATION
+     Fungsi: Menu utama untuk berpindah antar halaman aplikasi
+     ================================================================ -->
+<div class="sidebar-overlay" id="sidebarOverlay"></div>
+
+<aside class="sidebar" id="sidebar" role="navigation" aria-label="Menu utama">
+
+  <!-- Logo & Brand -->
+  <div class="sidebar-logo">
+    <div class="logo-badge">
+      <div class="logo-icon" role="img" aria-label="Logo SafetyCheck-IT">
+        <svg class="logo-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+      </div>
+      <div class="logo-text">
+        <h1>SafetyCheck-IT</h1>
+        <span>Studio K3LH Audit</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Indikator status studio -->
+  <div class="studio-status" role="status" aria-live="polite">
+    <div class="status-dot"></div>
+    <span>Studio Aktif — Aman</span>
+  </div>
+
+  <!-- Navigasi utama -->
+  <nav class="sidebar-nav">
+    <div class="nav-section-label">Menu Utama</div>
+
+    <!-- Dashboard -->
+    <div class="nav-item active" data-page="dashboard" role="button" tabindex="0"
+         aria-label="Dashboard — Statistik dan ringkasan audit">
+      <span class="nav-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>
+      </span>
+      <span>Dashboard</span>
+    </div>
+
+    <!-- Checklist Audit -->
+    <div class="nav-item" data-page="checklist" role="button" tabindex="0"
+         aria-label="Checklist Audit K3 — Form pemeriksaan kondisi studio">
+      <span class="nav-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 11 12 14 22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg>
+      </span>
+      <span>Checklist Audit K3</span>
+    </div>
+
+    <!-- Form Laporan -->
+    <div class="nav-item" data-page="laporan" role="button" tabindex="0"
+         aria-label="Form Laporan Bahaya — Laporkan kondisi berbahaya">
+      <span class="nav-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
+      </span>
+      <span>Laporan Bahaya</span>
+      <span class="nav-badge" id="navBadgeLaporan">2</span>
+    </div>
+
+    <div class="nav-section-label">Data & Edukasi</div>
+
+    <!-- Riwayat Audit -->
+    <div class="nav-item" data-page="riwayat" role="button" tabindex="0"
+         aria-label="Riwayat Audit — Lihat semua laporan dan status perbaikan">
+      <span class="nav-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+      </span>
+      <span>Riwayat Audit</span>
+    </div>
+
+    <!-- Edukasi 5R -->
+    <div class="nav-item" data-page="edukasi" role="button" tabindex="0"
+         aria-label="Edukasi 5R — Pelajari budaya kerja industri 5R">
+      <span class="nav-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M4 4.5A2.5 2.5 0 0 1 6.5 2H20v20H6.5a2.5 2.5 0 0 1-2.5-2.5v-15z"/></svg>
+      </span>
+      <span>Edukasi Budaya 5R</span>
+    </div>
+  </nav>
+
+  <!-- Footer sidebar -->
+  <div class="sidebar-footer">
+    <strong>Studio Aman, Produktivitas Nyaman</strong><br />
+    SMK Jurusan RPL — Studi Kasus K3LH<br />
+    Studio TechAnim © 2026
+  </div>
+</aside>
+
+<!-- ================================================================
+     MAIN CONTENT AREA
+     Fungsi: Area konten utama yang berganti sesuai halaman aktif
+     ================================================================ -->
+<main class="main-content" role="main">
+
+  <!-- TOP BAR -->
+  <header class="topbar">
+    <!-- Hamburger menu (tampil di mobile) -->
+    <button class="hamburger" id="hamburger" aria-label="Buka menu navigasi">☰</button>
+
+    <!-- Judul halaman aktif -->
+    <div class="topbar-title">
+      <span id="topbarTitle">Dashboard</span>
+    </div>
+
+    <!-- Aksi & info -->
+    <div class="topbar-actions">
+      <button class="topbar-btn" onclick="printPage()" aria-label="Cetak halaman">
+        <svg style="width:14px;height:14px;vertical-align:middle;margin-right:6px;" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 6 2 18 2 18 9"/><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><rect x="6" y="14" width="12" height="8"/></svg>Print
+      </button>
+      <!-- Badge tanggal & waktu real-time -->
+      <div class="datetime-badge" id="datetimeBadge" role="timer" aria-live="polite">
+        Memuat...
+      </div>
+    </div>
+  </header>
+
+  <!-- ============================================================
+       HALAMAN 1: DASHBOARD
+       ============================================================ -->
+  <section class="page active" id="page-dashboard" aria-labelledby="dashboardHeading">
+
+    <!-- Header section -->
+    <div class="section-header">
+      <h2 id="dashboardHeading">Dashboard Keamanan Studio</h2>
+      <p>Ringkasan kondisi K3LH terkini — Studio TechAnim | Pembaruan otomatis setiap sesi audit</p>
+    </div>
+
+    <!-- ── 4 Kartu Statistik Utama ── -->
+    <div class="stats-grid" role="region" aria-label="Statistik keamanan studio">
+
+      <!-- Kartu: Total Laporan -->
+      <div class="stat-card blue" role="article">
+        <div class="stat-card-header">
+          <div class="stat-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+          </div>
+          <span class="stat-trend trend-up">Baru</span>
+        </div>
+        <div class="stat-number" id="statTotalLaporan">0</div>
+        <div class="stat-label">Total Laporan Bahaya</div>
+        <div class="stat-sub">Sejak awal periode audit</div>
+      </div>
+
+      <!-- Kartu: Kabel Bermasalah -->
+      <div class="stat-card yellow" role="article">
+        <div class="stat-card-header">
+          <div class="stat-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v20M17 5H7a2 2 0 0 0-2 2v3a6 6 0 0 0 12 0V7a2 2 0 0 0-2-2z"/></svg>
+          </div>
+          <span class="stat-trend trend-down">Membaik</span>
+        </div>
+        <div class="stat-number" id="statKabelBermasalah">0</div>
+        <div class="stat-label">Kabel Bermasalah</div>
+        <div class="stat-sub">Perlu penanganan segera</div>
+      </div>
+
+      <!-- Kartu: Audit Hari Ini -->
+      <div class="stat-card green" role="article">
+        <div class="stat-card-header">
+          <div class="stat-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+          </div>
+          <span class="stat-trend trend-same">Stabil</span>
+        </div>
+        <div class="stat-number" id="statAuditHariIni">0</div>
+        <div class="stat-label">Audit Hari Ini</div>
+        <div class="stat-sub">Sesi pemeriksaan aktif</div>
+      </div>
+
+      <!-- Kartu: Masalah Kritis -->
+      <div class="stat-card red" role="article">
+        <div class="stat-card-header">
+          <div class="stat-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+          </div>
+          <span class="stat-trend trend-up">Segera!</span>
+        </div>
+        <div class="stat-number" id="statKritis">0</div>
+        <div class="stat-label">Masalah Kritis</div>
+        <div class="stat-sub">Membutuhkan tindakan darurat</div>
+      </div>
+    </div>
+
+    <!-- ── Progress Keamanan Studio ── -->
+    <div class="security-progress-card" role="region" aria-label="Indikator keamanan per zona">
+      <h3>Indikator Keamanan per Zona Studio</h3>
+      <div class="progress-rows">
+
+        <div class="progress-row">
+          <span class="progress-row-label">Manajemen Kabel</span>
+          <div class="progress-bar-wrap">
+            <div class="progress-bar-fill fill-yellow" data-width="45%" style="width:0%"></div>
+          </div>
+          <span class="progress-row-pct">45%</span>
+        </div>
+
+        <div class="progress-row">
+          <span class="progress-row-label">Area Kerja (5R)</span>
+          <div class="progress-bar-wrap">
+            <div class="progress-bar-fill fill-blue" data-width="72%" style="width:0%"></div>
+          </div>
+          <span class="progress-row-pct">72%</span>
+        </div>
+
+        <div class="progress-row">
+          <span class="progress-row-label">Instalasi Listrik</span>
+          <div class="progress-bar-wrap">
+            <div class="progress-bar-fill fill-red" data-width="38%" style="width:0%"></div>
+          </div>
+          <span class="progress-row-pct">38%</span>
+        </div>
+
+        <div class="progress-row">
+          <span class="progress-row-label">Perangkat Hardware</span>
+          <div class="progress-bar-wrap">
+            <div class="progress-bar-fill fill-green" data-width="85%" style="width:0%"></div>
+          </div>
+          <span class="progress-row-pct">85%</span>
+        </div>
+
+        <div class="progress-row">
+          <span class="progress-row-label">Keselamatan Darurat</span>
+          <div class="progress-bar-wrap">
+            <div class="progress-bar-fill fill-blue" data-width="60%" style="width:0%"></div>
+          </div>
+          <span class="progress-row-pct">60%</span>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- ── Panel bawah: Aktivitas & Distribusi Risiko ── -->
+    <div class="dashboard-bottom">
+
+      <!-- Panel Aktivitas Terbaru -->
+      <div class="panel" role="region" aria-label="Aktivitas audit terbaru">
+        <h3>Aktivitas Terbaru</h3>
+        <div class="activity-list">
+          <div class="activity-item">
+            <div class="activity-dot" style="background:var(--accent-red)"></div>
+            <div>
+              <div class="activity-text"><strong>RPT-005</strong> — Jalur darurat tersumbat kabel ekstensi dilaporkan oleh Khensa</div>
+              <div class="activity-time">Hari ini, 08:42</div>
+            </div>
+          </div>
+          <div class="activity-item">
+            <div class="activity-dot" style="background:var(--accent-yellow)"></div>
+            <div>
+              <div class="activity-text"><strong>RPT-003</strong> — Stop kontak rusak di Area Animasi sedang dalam perbaikan</div>
+              <div class="activity-time">Kemarin, 14:15</div>
+            </div>
+          </div>
+          <div class="activity-item">
+            <div class="activity-dot" style="background:var(--accent-green)"></div>
+            <div>
+              <div class="activity-text"><strong>RPT-001</strong> — Kabel menggantung di Ruang Server berhasil ditangani</div>
+              <div class="activity-time">25 Mei, 11:30</div>
+            </div>
+          </div>
+          <div class="activity-item">
+            <div class="activity-dot" style="background:var(--primary-light)"></div>
+            <div>
+              <div class="activity-text">Audit rutin area Workstation A dilaksanakan oleh Tim K3</div>
+              <div class="activity-time">24 Mei, 09:00</div>
+            </div>
+          </div>
+          <div class="activity-item">
+            <div class="activity-dot" style="background:var(--accent-orange)"></div>
+            <div>
+              <div class="activity-text">Peringatan: 3 kabel belum diberi label di Ruang Server</div>
+              <div class="activity-time">23 Mei, 16:45</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Panel Distribusi Risiko -->
+      <div class="panel" role="region" aria-label="Distribusi tingkat risiko bahaya">
+        <h3>Distribusi Tingkat Risiko</h3>
+        <div class="risk-legend">
+
+          <div class="risk-row">
+            <div class="risk-color" style="background:var(--accent-red)"></div>
+            <span class="risk-name">Kritis</span>
+            <div class="risk-bar"><div class="risk-bar-fill" style="width:28.5%;background:var(--accent-red)"></div></div>
+            <span class="risk-count">2</span>
+          </div>
+
+          <div class="risk-row">
+            <div class="risk-color" style="background:var(--accent-orange)"></div>
+            <span class="risk-name">Tinggi</span>
+            <div class="risk-bar"><div class="risk-bar-fill" style="width:28.5%;background:var(--accent-orange)"></div></div>
+            <span class="risk-count">2</span>
+          </div>
+
+          <div class="risk-row">
+            <div class="risk-color" style="background:var(--accent-yellow)"></div>
+            <span class="risk-name">Sedang</span>
+            <div class="risk-bar"><div class="risk-bar-fill" style="width:28.5%;background:var(--accent-yellow)"></div></div>
+            <span class="risk-count">2</span>
+          </div>
+
+          <div class="risk-row">
+            <div class="risk-color" style="background:var(--accent-green)"></div>
+            <span class="risk-name">Rendah</span>
+            <div class="risk-bar"><div class="risk-bar-fill" style="width:14%;background:var(--accent-green)"></div></div>
+            <span class="risk-count">1</span>
+          </div>
+
+        </div>
+
+        <div style="margin-top:20px;padding-top:16px;border-top:1px solid var(--border)">
+          <div style="font-size:12px;color:var(--text-muted);margin-bottom:8px;">Skor Keamanan Keseluruhan</div>
+          <div style="font-size:32px;font-weight:900;color:var(--accent-yellow)">57<span style="font-size:16px;color:var(--text-muted)">/100</span></div>
+          <div style="font-size:12px;color:var(--accent-yellow);margin-top:4px;">Perlu Peningkatan — Target: ≥80</div>
+          <div style="margin-top:10px;background:rgba(255,255,255,.06);border-radius:50px;height:8px;overflow:hidden">
+            <div style="width:57%;height:100%;background:linear-gradient(90deg,var(--accent-yellow),var(--accent-orange));border-radius:50px"></div>
+          </div>
+        </div>
+      </div>
+
+    </div><!-- /dashboard-bottom -->
+  </section>
+  <!-- END: HALAMAN DASHBOARD -->
+
+
+  <!-- ============================================================
+       HALAMAN 2: CHECKLIST AUDIT K3
+       ============================================================ -->
+  <section class="page" id="page-checklist" aria-labelledby="checklistHeading">
+
+    <div class="section-header">
+      <h2 id="checklistHeading">Checklist Audit K3</h2>
+      <p>Periksa setiap item dengan teliti. Klik item untuk menandai AMAN atau BAHAYA.</p>
+    </div>
+
+    <!-- Ringkasan progress audit -->
+    <div class="audit-summary" role="region" aria-label="Ringkasan progress audit">
+
+      <div class="audit-summary-stat">
+        <div class="val" id="totalAman" style="color:var(--accent-green)">0</div>
+        <div class="lbl">Item Aman</div>
+      </div>
+      <div class="audit-summary-divider"></div>
+
+      <div class="audit-summary-stat">
+        <div class="val" id="totalBahaya" style="color:var(--accent-red)">0</div>
+        <div class="lbl">Item Bahaya</div>
+      </div>
+      <div class="audit-summary-divider"></div>
+
+      <div class="audit-summary-stat">
+        <div class="val" id="totalSisa" style="color:var(--text-secondary)">25</div>
+        <div class="lbl">Belum Diperiksa</div>
+      </div>
+      <div class="audit-summary-divider"></div>
+
+      <div class="audit-progress-area">
+        <label for="auditFill">Progress Pemeriksaan: <strong id="auditPct">0%</strong></label>
+        <div class="big-progress-wrap">
+          <div class="big-progress-fill" id="auditFill" style="width:0%" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
+        </div>
+      </div>
+
+      <div style="display:flex;gap:8px;flex-shrink:0">
+        <button class="btn-secondary" onclick="resetChecklist()" style="padding:10px 16px;font-size:13px;display:inline-flex;align-items:center;gap:6px;">
+          <svg style="width:12px;height:12px" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M4 4v5h.582m15.356 2A8.001 8.001 0 1121.21 7.89H18"/></svg>Reset
+        </button>
+        <button class="btn-submit" onclick="saveChecklist()" style="padding:10px 16px;font-size:13px;display:inline-flex;align-items:center;gap:6px;">
+          <svg style="width:12px;height:12px" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M8 7H5a2 2 0 00-2 2v9a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-3m-1 4l-3 3m0 0l-3-3m3 3V4"/></svg>Simpan
+        </button>
+      </div>
+    </div>
+
+    <!-- Grid item checklist (diisi oleh JavaScript) -->
+    <div class="checklist-grid" id="checklistContainer" role="list" aria-label="Daftar item pemeriksaan K3">
+      <!-- Konten dirender oleh initChecklist() di script.js -->
+    </div>
+
+  </section>
+  <!-- END: HALAMAN CHECKLIST -->
+
+
+  <!-- ============================================================
+       HALAMAN 3: FORM LAPORAN BAHAYA
+       ============================================================ -->
+  <section class="page" id="page-laporan" aria-labelledby="laporanHeading">
+
+    <div class="section-header">
+      <h2 id="laporanHeading">Form Laporan Bahaya</h2>
+      <p>Laporkan kondisi berbahaya yang ditemukan. Setiap laporan akan ditindaklanjuti oleh Tim K3.</p>
+    </div>
+
+    <form class="form-card" id="formLaporan" novalidate aria-label="Formulir laporan bahaya K3LH">
+
+      <div class="form-grid">
+
+        <!-- Field: Nama Pelapor -->
+        <div class="form-group">
+          <label for="inputPelapor">Nama Pelapor <span style="color:var(--accent-red)">*</span></label>
+          <input type="text" id="inputPelapor" class="form-control" 
+                 placeholder="Contoh: Khensa" 
+                 autocomplete="name" required />
+        </div>
+
+        <!-- Field: Lokasi -->
+        <div class="form-group">
+          <label for="inputLokasi">Lokasi Kejadian <span style="color:var(--accent-red)">*</span></label>
+          <input type="text" id="inputLokasi" class="form-control" 
+                 placeholder="Contoh: Ruang Server, Meja Editing 3" required />
+        </div>
+
+        <!-- Field: Jenis Bahaya -->
+        <div class="form-group">
+          <label for="inputJenis">Jenis Bahaya <span style="color:var(--accent-red)">*</span></label>
+          <select id="inputJenis" class="form-control" required>
+            <option value="" disabled selected>— Pilih jenis bahaya —</option>
+            <option value="Kabel Melintang">Kabel Melintang di Jalur</option>
+            <option value="Kabel Berantakan">Kabel Berantakan / Tidak Rapi</option>
+            <option value="Kabel Menggantung">Kabel Menggantung Berbahaya</option>
+            <option value="Stop Kontak Rusak">Stop Kontak Rusak / Longgar</option>
+            <option value="Overloading Listrik">Overloading Stop Kontak</option>
+            <option value="Perangkat Berantakan">Perangkat Tidak Tersusun Rapi</option>
+            <option value="Perangkat Tidak Stabil">Perangkat Tidak Stabil / Hampir Jatuh</option>
+            <option value="Jalur Tersumbat">Jalur Evakuasi Tersumbat</option>
+            <option value="Area Kotor">Area Kerja Kotor / Berantakan</option>
+            <option value="APAR Tidak Tersedia">APAR Tidak Tersedia / Terhalang</option>
+            <option value="Lainnya">Lainnya</option>
+          </select>
+        </div>
+
+        <!-- Field: Tanggal (auto-fill hari ini) -->
+        <div class="form-group">
+          <label for="inputTanggal">Tanggal Laporan</label>
+          <input type="date" id="inputTanggal" class="form-control" />
+        </div>
+
+        <!-- Field: Tingkat Risiko -->
+        <div class="form-group form-full">
+          <label>Tingkat Risiko <span style="color:var(--accent-red)">*</span></label>
+          <div class="risk-selector" role="radiogroup" aria-label="Pilih tingkat risiko bahaya">
+            <div class="risk-option low">
+              <input type="radio" name="risiko" id="risikoRendah" value="rendah" />
+              <label for="risikoRendah" class="low-label">Rendah</label>
+            </div>
+            <div class="risk-option medium">
+              <input type="radio" name="risiko" id="risikoSedang" value="sedang" />
+              <label for="risikoSedang" class="medium-label">Sedang</label>
+            </div>
+            <div class="risk-option high">
+              <input type="radio" name="risiko" id="risikoTinggi" value="tinggi" />
+              <label for="risikoTinggi" class="high-label">Tinggi</label>
+            </div>
+            <div class="risk-option critical">
+              <input type="radio" name="risiko" id="risikoKritis" value="kritis" />
+              <label for="risikoKritis" class="critical-label">Kritis</label>
+            </div>
+          </div>
+          <!-- Keterangan tingkat risiko -->
+          <div style="margin-top:8px;font-size:11px;color:var(--text-muted)">
+            Rendah = Tidak mendesak &nbsp;|&nbsp;
+            Sedang = Perlu tindak lanjut &nbsp;|&nbsp;
+            Tinggi = Segera diperbaiki &nbsp;|&nbsp;
+            Kritis = Bahaya nyawa, tangani sekarang!
+          </div>
+        </div>
+
+        <!-- Field: Deskripsi Masalah -->
+        <div class="form-group form-full">
+          <label for="inputDeskripsi">Deskripsi Masalah <span style="color:var(--accent-red)">*</span></label>
+          <textarea id="inputDeskripsi" class="form-control" rows="4" 
+                    placeholder="Jelaskan kondisi berbahaya secara detail: apa yang terjadi, di mana tepatnya, seberapa parah kondisinya, dan dampak potensialnya..." required></textarea>
+        </div>
+
+        <!-- Field: Upload Foto Bukti -->
+        <div class="form-group form-full">
+          <label>Foto Bukti (Opsional)</label>
+          <div class="upload-area" id="uploadArea" role="button" tabindex="0"
+               aria-label="Klik atau seret gambar ke sini untuk mengunggah foto bukti">
+            <input type="file" id="uploadInput" accept="image/*" />
+            <div class="upload-icon">
+              <svg style="width:24px;height:24px;color:var(--text-muted);" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M3 9a2 2 0 012-2h.93a2 2 0 001.664-.89l.812-1.22A2 2 0 0110.07 4h3.86a2 2 0 011.664.89l.812 1.22A2 2 0 0018.07 7H19a2 2 0 012 2v9a2 2 0 01-2 2H5a2 2 0 01-2-2V9z"/><circle cx="12" cy="13" r="3"/></svg>
+            </div>
+            <div class="upload-text">
+              Seret gambar ke sini atau <strong>klik untuk pilih file</strong><br />
+              <small style="color:var(--text-muted)">Format: JPG, PNG, WEBP — Maks. 5MB</small>
+            </div>
+            <div class="upload-preview" id="uploadPreview">
+              <img id="previewImg" src="" alt="Preview foto bukti" />
+            </div>
+          </div>
+        </div>
+
+      </div><!-- /form-grid -->
+
+      <!-- Tombol Aksi -->
+      <div class="form-actions">
+        <button type="submit" class="btn-submit" style="display:inline-flex;align-items:center;gap:6px;">
+          <svg style="width:14px;height:14px;" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8"/></svg>Kirim Laporan
+        </button>
+        <button type="button" class="btn-secondary" onclick="document.getElementById('formLaporan').reset();document.getElementById('uploadPreview').style.display='none'" style="display:inline-flex;align-items:center;gap:6px;">
+          <svg style="width:14px;height:14px;" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"/></svg>Bersihkan Form
+        </button>
+      </div>
+
+      <!-- Catatan penting -->
+      <div style="margin-top:16px;padding:12px 16px;background:rgba(245,158,11,.08);border:1px solid rgba(245,158,11,.2);border-radius:var(--radius-sm)">
+        <div style="font-size:12px;color:var(--accent-yellow);font-weight:600">Penting!</div>
+        <div style="font-size:12px;color:var(--text-muted);margin-top:4px;line-height:1.6">
+          Untuk kondisi <strong style="color:var(--accent-red)">KRITIS</strong> yang mengancam keselamatan jiwa, 
+          segera hubungi Tim K3 secara langsung! Jangan tunggu laporan digital diproses.
+          Nomor Darurat: <strong style="color:var(--primary-light);font-family:monospace">0800-K3LH-112</strong>
+        </div>
+      </div>
+
+    </form>
+  </section>
+  <!-- END: HALAMAN FORM LAPORAN -->
+
+
+  <!-- ============================================================
+       HALAMAN 4: RIWAYAT AUDIT
+       ============================================================ -->
+  <section class="page" id="page-riwayat" aria-labelledby="riwayatHeading">
+
+    <div class="section-header">
+      <h2 id="riwayatHeading">Riwayat Audit & Laporan</h2>
+      <p>Semua laporan bahaya yang tercatat beserta status penanganannya.</p>
+    </div>
+
+    <!-- Toolbar: Search + Filter + Export -->
+    <div class="table-toolbar">
+      <div class="search-wrap">
+        <span class="search-icon">
+          <svg style="width:14px;height:14px;color:var(--text-muted);" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
+        </span>
+        <input type="search" class="search-box" id="tableSearch"
+               placeholder="Cari pelapor, lokasi, jenis..."
+               aria-label="Cari laporan audit" />
+      </div>
+
+      <select class="filter-select" id="filterStatus" aria-label="Filter berdasarkan status">
+        <option value="all">Semua Status</option>
+        <option value="baru">Baru</option>
+        <option value="proses">Dalam Proses</option>
+        <option value="selesai">Selesai</option>
+      </select>
+
+      <select class="filter-select" id="filterRisiko" aria-label="Filter berdasarkan risiko">
+        <option value="all">Semua Risiko</option>
+        <option value="rendah">Rendah</option>
+        <option value="sedang">Sedang</option>
+        <option value="tinggi">Tinggi</option>
+        <option value="kritis">Kritis</option>
+      </select>
+
+      <button class="topbar-btn" onclick="exportCSV()" style="margin-left:auto;display:inline-flex;align-items:center;gap:6px;" aria-label="Export data ke CSV">
+        <svg style="width:14px;height:14px" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/></svg>Export CSV
+      </button>
+    </div>
+
+    <!-- Tabel Data Riwayat -->
+    <div class="table-wrapper" role="region" aria-label="Tabel riwayat laporan audit">
+      <table aria-label="Daftar laporan bahaya K3LH">
+        <thead>
+          <tr>
+            <th scope="col">ID</th>
+            <th scope="col">Tanggal</th>
+            <th scope="col">Pelapor</th>
+            <th scope="col">Lokasi</th>
+            <th scope="col">Jenis Bahaya</th>
+            <th scope="col">Risiko</th>
+            <th scope="col">Status</th>
+            <th scope="col">Aksi</th>
+          </tr>
+        </thead>
+        <tbody id="auditTableBody">
+          <!-- Dirender oleh renderTable() di script.js -->
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Info total data -->
+    <div style="margin-top:12px;font-size:12px;color:var(--text-muted);text-align:right">
+      Menampilkan data dari sesi audit Studio TechAnim &nbsp;|&nbsp; Klik "Detail" untuk melihat deskripsi lengkap
+    </div>
+
+  </section>
+  <!-- END: HALAMAN RIWAYAT -->
+
+
+  <!-- ============================================================
+       HALAMAN 5: EDUKASI BUDAYA 5R
+       ============================================================ -->
+  <section class="page" id="page-edukasi" aria-labelledby="edukasiHeading">
+
+    <!-- Hero Section -->
+    <div class="r5-hero" role="banner">
+      <h2 id="edukasiHeading">Budaya 5R dalam Industri IT</h2>
+      <p>Prinsip 5R (Ringkas, Rapi, Resik, Rawat, Rajin) adalah fondasi budaya kerja industri modern. 
+         Di studio IT, penerapan 5R langsung berdampak pada keselamatan, produktivitas, dan kualitas kerja.</p>
+    </div>
+
+    <!-- 5 Kartu Prinsip 5R -->
+    <div class="r5-cards" role="list">
+
+      <!-- R1: Ringkas (Seiri) -->
+      <div class="r5-card" role="listitem" aria-label="Prinsip Ringkas">
+        <div class="r5-number">R1</div>
+        <div class="r5-title">Ringkas</div>
+        <div class="r5-subtitle">Seiri — Sort &amp; Eliminate</div>
+        <div class="r5-desc">
+          Pisahkan dan buang semua barang yang tidak diperlukan dari area kerja. 
+          Hanya simpan yang benar-benar dibutuhkan untuk pekerjaan saat ini.
+          Prinsip ini mencegah penumpukan yang bisa menjadi bahaya fisik.
+        </div>
+        <div class="r5-tips">
+          <div class="r5-tip">Singkirkan kabel lama yang tidak digunakan dari meja</div>
+          <div class="r5-tip">Hapus file sampah dari storage yang memperpadat sistem</div>
+          <div class="r5-tip">Buang perangkat rusak yang sudah tidak berfungsi</div>
+          <div class="r5-tip">Audit software: hapus aplikasi yang tidak terpakai</div>
+        </div>
+      </div>
+
+      <!-- R2: Rapi (Seiton) -->
+      <div class="r5-card" role="listitem" aria-label="Prinsip Rapi">
+        <div class="r5-number">R2</div>
+        <div class="r5-title">Rapi</div>
+        <div class="r5-subtitle">Seiton — Set in Order</div>
+        <div class="r5-desc">
+          Atur semua barang di tempat yang tepat dengan urutan logis.
+          Setiap item harus memiliki "rumah" yang tetap agar mudah ditemukan
+          dan dikembalikan. Ini mengurangi waktu pencarian dan risiko kecelakaan.
+        </div>
+        <div class="r5-tips">
+          <div class="r5-tip">Rapikan kabel dengan cable tie, beri label warna</div>
+          <div class="r5-tip">Susun perangkat keras sesuai fungsi dan frekuensi penggunaan</div>
+          <div class="r5-tip">Buat struktur folder yang konsisten di setiap komputer</div>
+          <div class="r5-tip">Tandai posisi setiap peralatan di rak dengan label</div>
+        </div>
+      </div>
+
+      <!-- R3: Resik (Seiso) -->
+      <div class="r5-card" role="listitem" aria-label="Prinsip Resik">
+        <div class="r5-number">R3</div>
+        <div class="r5-title">Resik</div>
+        <div class="r5-subtitle">Seiso — Shine &amp; Clean</div>
+        <div class="r5-desc">
+          Bersihkan area kerja secara rutin dan sistematis. 
+          Resik bukan hanya soal kebersihan fisik — termasuk juga "kebersihan digital"
+          seperti membersihkan cache, virus, dan data sampah dari sistem.
+        </div>
+        <div class="r5-tips">
+          <div class="r5-tip">Bersihkan debu dari ventilasi komputer setiap minggu</div>
+          <div class="r5-tip">Lap monitor dan keyboard secara rutin dengan cairan khusus</div>
+          <div class="r5-tip">Scan antivirus dan bersihkan malware secara berkala</div>
+          <div class="r5-tip">Bersihkan konektor dan port dari kotoran yang menghalang</div>
+        </div>
+      </div>
+
+      <!-- R4: Rawat (Seiketsu) -->
+      <div class="r5-card" role="listitem" aria-label="Prinsip Rawat">
+        <div class="r5-number">R4</div>
+        <div class="r5-title">Rawat</div>
+        <div class="r5-subtitle">Seiketsu — Standardize</div>
+        <div class="r5-desc">
+          Pertahankan standar 3R sebelumnya (Ringkas, Rapi, Resik) secara konsisten.
+          Buat SOP tertulis, jadwal pemeliharaan, dan sistem pengecekan agar
+          kondisi baik tidak kembali memburuk.
+        </div>
+        <div class="r5-tips">
+          <div class="r5-tip">Buat jadwal pemeliharaan rutin dan tempel di dinding</div>
+          <div class="r5-tip">Dokumentasikan SOP pengelolaan kabel dan perangkat</div>
+          <div class="r5-tip">Lakukan backup data sesuai jadwal yang ditetapkan</div>
+          <div class="r5-tip">Update sistem operasi dan software secara terjadwal</div>
+        </div>
+      </div>
+
+      <!-- R5: Rajin (Shitsuke) -->
+      <div class="r5-card" role="listitem" aria-label="Prinsip Rajin">
+        <div class="r5-number">R5</div>
+        <div class="r5-title">Rajin</div>
+        <div class="r5-subtitle">Shitsuke — Sustain</div>
+        <div class="r5-desc">
+          Jadikan 4R sebelumnya sebagai kebiasaan dan budaya tim yang tumbuh dari kesadaran,
+          bukan paksaan. Rajin berarti komitmen jangka panjang terhadap standar K3LH
+          yang telah ditetapkan bersama.
+        </div>
+        <div class="r5-tips">
+          <div class="r5-tip">Laporkan bahaya yang ditemukan tanpa menunda</div>
+          <div class="r5-tip">Ikuti briefing K3LH setiap awal shift dengan serius</div>
+          <div class="r5-tip">Kembalikan semua peralatan ke tempat semula setelah dipakai</div>
+          <div class="r5-tip">Jadilah role model K3 bagi rekan kerja</div>
+        </div>
+      </div>
+
+    </div><!-- /r5-cards -->
+
+    <!-- Koneksi 5R dengan dunia IT -->
+    <div class="it-connection" role="region" aria-label="Hubungan 5R dengan industri IT">
+      <h3>Mengapa 5R Kritis di Industri IT?</h3>
+      <div class="it-connection-grid">
+
+        <div class="it-conn-item">
+          <div class="r">Ringkas → Clean Code</div>
+          <div class="it">Seperti membuang kode yang tidak perlu, fokus pada esensi yang berfungsi.</div>
+        </div>
+
+        <div class="it-conn-item">
+          <div class="r">Rapi → Version Control</div>
+          <div class="it">Struktur folder teratur = Git repository yang bersih dan mudah dikelola tim.</div>
+        </div>
+
+        <div class="it-conn-item">
+          <div class="r">Resik → Maintenance</div>
+          <div class="it">Update rutin, scan virus, bersihkan cache = sistem yang stabil dan cepat.</div>
+        </div>
+
+        <div class="it-conn-item">
+          <div class="r">Rawat → DevOps</div>
+          <div class="it">SOP dan standar yang terdokumentasi = deployment yang konsisten dan andal.</div>
+        </div>
+
+        <div class="it-conn-item">
+          <div class="r">Rajin → Agile Culture</div>
+          <div class="it">Budaya continuous improvement yang membangun tim IT kelas dunia.</div>
+        </div>
+
+      </div>
+
+      <!-- Kutipan -->
+      <div style="margin-top:20px;padding:18px;background:rgba(255,255,255,.04);border-radius:var(--radius-md);border-left:4px solid var(--primary-light)">
+        <div style="font-size:15px;font-style:italic;color:var(--text-primary);line-height:1.7">
+          "Ruang kerja yang teratur mencerminkan pikiran yang teratur. 
+          Di industri IT, kreativitas dan inovasi tumbuh dari lingkungan yang aman, 
+          bersih, dan terorganisir dengan baik."
+        </div>
+        <div style="font-size:12px;color:var(--text-muted);margin-top:8px">— Prinsip K3LH Industri Manufaktur &amp; Teknologi</div>
+      </div>
+
+    </div>
+
+  </section>
+  <!-- END: HALAMAN EDUKASI -->
+
+</main><!-- /main-content -->
+
+
+<!-- ================================================================
+     MODAL: Laporan Berhasil Dikirim
+     ================================================================ -->
+<div class="modal-overlay" id="modalBerhasil" role="dialog" aria-modal="true" aria-labelledby="modalBerhasilTitle">
+  <div class="modal">
+    <h3 id="modalBerhasilTitle">Laporan Berhasil Dikirim!</h3>
+    <p>Laporan Anda telah dicatat dan akan segera ditindaklanjuti.</p>
+    <div class="modal-actions">
+      <button class="modal-btn primary" onclick="closeModal('modalBerhasil');showPage('riwayat')">
+        Lihat Riwayat
+      </button>
+      <button class="modal-btn cancel" onclick="closeModal('modalBerhasil')">
+        Tutup
+      </button>
+    </div>
+  </div>
+</div>
+
+<!-- ================================================================
+     MODAL: Konfirmasi Reset Checklist
+     ================================================================ -->
+<div class="modal-overlay" id="modalReset" role="dialog" aria-modal="true" aria-labelledby="modalResetTitle">
+  <div class="modal">
+    <h3 id="modalResetTitle">Reset Checklist</h3>
+    <p>Yakin ingin mereset semua checklist? Semua status akan kembali ke kondisi awal dan data yang belum disimpan akan hilang.</p>
+    <div class="modal-actions">
+      <button class="modal-btn primary" onclick="confirmReset()" style="background:var(--accent-yellow);color:#000">
+        Ya, Reset
+      </button>
+      <button class="modal-btn cancel" onclick="closeModal('modalReset')">
+        Batal
+      </button>
+    </div>
+  </div>
+</div>
+
+<!-- ================================================================
+     MODAL: Detail Laporan (diisi dinamis oleh JS)
+     ================================================================ -->
+<div class="modal-overlay" id="modalDetail" role="dialog" aria-modal="true" aria-labelledby="modalDetailTitle">
+  <div class="modal">
+    <h3 id="modalDetailTitle">Detail Laporan</h3>
+    <p>Memuat detail...</p>
+    <div class="modal-actions">
+      <button class="modal-btn cancel" onclick="closeModal('modalDetail')">Tutup</button>
+    </div>
+  </div>
+</div>
+
+<!-- ================================================================
+     TOAST NOTIFICATION CONTAINER
+     ================================================================ -->
+<div id="toastContainer" aria-live="polite" aria-atomic="true"></div>
+
+<!-- ================================================================
+     JAVASCRIPT UTAMA
+     ================================================================ -->
+<script>
+  // Set tanggal hari ini sebagai default di form
+  document.addEventListener('DOMContentLoaded', () => {
+    const dateInput = document.getElementById('inputTanggal');
+    if (dateInput) {
+      dateInput.value = new Date().toISOString().split('T')[0];
+    }
+  });
+</script>
+<script src="script.js"></script>
+
+</body>
+</html>
